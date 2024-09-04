@@ -17,6 +17,7 @@ class LanguageFilter(BaseFilter):
         languages: tuple = (Languages.english,),
         language_threshold: float = 0.65,
         exclusion_writer: DiskWriter = None,
+        upate_metadata = True
     ):
         """
         filters if the predicted language is not among given language or if the language score is below language
@@ -31,6 +32,7 @@ class LanguageFilter(BaseFilter):
         self.language_threshold = language_threshold
         self.languages = languages
         self._model = None
+        self.upate_metadata = upate_metadata
 
     @property
     def model(self):
@@ -57,6 +59,7 @@ class LanguageFilter(BaseFilter):
         language, score = self.model.predict(doc.text.replace("\n", ""))
         # language label is given in the form __label__<language_id>
         language = language[0].split("__")[2]
-        doc.metadata["language"] = language
-        doc.metadata["language_score"] = score[0]
+        if self.upate_metadata:
+            doc.metadata["language"] = language
+            doc.metadata["language_score"] = score[0]
         return score > self.language_threshold and language in self.languages
