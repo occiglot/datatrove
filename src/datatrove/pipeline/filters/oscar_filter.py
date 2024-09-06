@@ -56,6 +56,6 @@ class OSCARFilter(BaseFilter):
             return False, 'kenlm_min_harmful_ppl'
         if doc.metadata['harmful_pp'] and doc.metadata['harmful_pp'] > self.max_harmful_ppl:
             return False, 'kenlm_max_harmful_ppl'
-        if doc['medatdata']['oscar_categories'] and len(set(doc['medatdata']['oscar_categories']) & self.exclude_categories) > 0:
+        if doc.metadata['oscar_categories'] and len(set(doc.metadata['oscar_categories']) & self.exclude_categories) > 0:
             return False, 'oscar_category'
         return True
