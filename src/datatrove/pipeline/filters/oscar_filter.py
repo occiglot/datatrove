@@ -26,20 +26,19 @@ DEFAULT_EXCLUDE_CATEGORIES = {
 class OSCARFilter(BaseFilter):
     name = "🗑 OSCAR"
 
-    def __init__(self, regex_exp: str,
+    def __init__(self,
                  exclusion_writer: DiskWriter = None,
                  min_harmful_ppl: float = DEFAULT_OSCAR_MIN_HARMFUL_PP,
                  max_harmful_ppl: float = DEFAULT_OSCAR_MAX_HARMFUL_PP,
                  exclude_categories: set = DEFAULT_EXCLUDE_CATEGORIES):
         """
-        filters if regex finds at least one match
+        filters data based on OSCAR annotations
 
         Args:
             regex_exp: regex expression
             exclusion_writer:
         """
         super().__init__(exclusion_writer)
-        self.regex = re.compile(regex_exp)
         self.min_harmful_ppl = min_harmful_ppl
         self.max_harmful_ppl = max_harmful_ppl
         self.exclude_categories = exclude_categories
