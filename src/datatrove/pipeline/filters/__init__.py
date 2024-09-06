@@ -10,3 +10,4 @@ from .sampler_filter import SamplerFilter
 from .unigram_log_probs import UnigramLogProbFilter
 from .url_filter import URLFilter
 from .multilingual_policy_filter import MultilingualPolicyFilter
+from .oscar_filter import OSCARFilter
