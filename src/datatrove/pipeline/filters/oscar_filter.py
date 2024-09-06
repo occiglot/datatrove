@@ -50,11 +50,11 @@ class OSCARFilter(BaseFilter):
         Returns:
             is_filter
         """
-        if doc['metadata']['oscar_quality_warnings']:
+        if doc.metadata['oscar_quality_warnings']:
             return False, 'oscar_quality_warning'
-        if doc['metadata']['harmful_pp'] and doc['metadata']['harmful_pp'] < self.min_harmful_ppl:
+        if doc.metadata['harmful_pp'] and doc.metadata['harmful_pp'] < self.min_harmful_ppl:
             return False, 'kenlm_min_harmful_ppl'
-        if doc['metadata']['harmful_pp'] and doc['metadata']['harmful_pp'] > self.max_harmful_ppl:
+        if doc.metadata['harmful_pp'] and doc.metadata['harmful_pp'] > self.max_harmful_ppl:
             return False, 'kenlm_max_harmful_ppl'
         if doc['medatdata']['oscar_categories'] and len(set(doc['medatdata']['oscar_categories']) & self.exclude_categories) > 0:
             return False, 'oscar_category'
