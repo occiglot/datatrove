@@ -50,7 +50,7 @@ class OSCARFilter(BaseFilter):
         Returns:
             is_filter
         """
-        if doc.metadata['oscar_quality_warnings']:
+        if doc.metadata['oscar_quality_warnings'] and len(doc.metadata['oscar_quality_warnings']) > 0:
             return False, 'oscar_quality_warning'
         if doc.metadata['harmful_pp'] and doc.metadata['harmful_pp'] < self.min_harmful_ppl:
             return False, 'kenlm_min_harmful_ppl'
