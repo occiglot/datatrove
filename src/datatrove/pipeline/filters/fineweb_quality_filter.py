@@ -28,7 +28,7 @@ class FineWebQualityFilter(BaseFilter):
     def filter(self, doc) -> bool | tuple[bool, str]:
         from nltk import word_tokenize
 
-        stop_chars = (".", "'", '"', "!", "?")
+        stop_chars = (".", "'", '"', "!", "?", ";")
 
         lines = doc.text.split("\n")
         ratio = sum(1 for line in lines if line.endswith(stop_chars)) / len(lines)
